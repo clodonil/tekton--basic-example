@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-exitcode-in-subsequent-steps
+spec:
+  steps:
+    - name: step1
+      image: centos
+      onError: continue 
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Step1"
+        xpto
+    - name: step2
+      image: centos
+      onError: stopAndFail
+      script: |
+        #!/usr/bin/env bash
+        ls -l  /tekton/steps/
+        echo "ExitCode do Step1:"
+        cat $(steps.step-step1.exitCode.path)  

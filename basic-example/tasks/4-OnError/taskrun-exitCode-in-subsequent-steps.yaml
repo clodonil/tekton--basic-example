@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-exitcode-in-subsequent-steps
+spec:
+  taskRef:
+     name: task-exitcode-in-subsequent-steps

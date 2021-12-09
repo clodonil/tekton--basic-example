@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-runafter
+spec:
+  tasks:
+    - name: runafter-task1
+      taskRef:
+        name: runafter-task1
+    - name: runafter-task2
+      taskRef:
+        name: runafter-task2
+      runAfter:
+        - runafter-task1  
+    - name: runafter-task3
+      taskRef:
+        name: runafter-task3
+      runAfter:
+        - runafter-task1
+    - name: runafter-task4
+      taskRef:
+        name: runafter-task4
+      runAfter:
+        - runafter-task2
+        - runafter-task3
+

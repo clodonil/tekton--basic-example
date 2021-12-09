@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: pipelinerun-timeout
+spec:
+  pipelineRef:
+    name: pipeline-timeout

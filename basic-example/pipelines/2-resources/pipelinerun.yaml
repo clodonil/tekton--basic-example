@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: pipelinerun-resource
+spec:
+  resources:
+  - name: source
+    resourceRef:
+        name: source
+  pipelineRef:
+    name: pipeline-resource

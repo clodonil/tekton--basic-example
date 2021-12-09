@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-parameters
+spec:
+  params:
+    - name: runtime
+      type: string
+      default: python
+  tasks:
+    - name: parameters-task
+      taskRef:
+        name: parameters-task
+      params:
+        - name: runtime
+          value: "$(params.runtime)"        
+ 
+

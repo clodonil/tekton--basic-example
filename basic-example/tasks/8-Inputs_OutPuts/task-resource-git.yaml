@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-resource-git
+spec:
+  resources:
+    inputs:
+      - name: source
+        type: git
+  steps:
+    - name: build
+      image: node
+      script: |
+        #!/usr/bin/env bash
+        echo "Build do NPM"
+        npm install 
+        npm run build 

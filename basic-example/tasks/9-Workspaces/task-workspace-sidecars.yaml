@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-workspace-sidecars
+spec:
+  steps:
+    - name: step1
+      image: centos
+      script: |
+        #!/usr/bin/env bash
+          echo "<h1> Pagina 1 </h1>" > /dados/index.html
+          curl localhost
+  workspaces:
+    - name: myworkspace
+      optional: true
+      description: The folder where we write the message to
+      mountPath: /dados
+  sidecars:
+    - image: $(params.image)
+      name: server
+      workspaces:
+        - name: myworkspace
+          mountPath: /usr/share/nginx/html/

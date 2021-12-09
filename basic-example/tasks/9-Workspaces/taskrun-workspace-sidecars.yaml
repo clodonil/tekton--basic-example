@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-workspace-sidecars
+spec:
+  workspaces:
+    - name: myworkspace
+      persistentVolumeClaim:
+        claimName: mypvc
+  taskRef:
+     name: task-workspace-sidecars

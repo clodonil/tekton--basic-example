@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: runafter-task3
+spec:
+  steps:
+    - name: step1-1
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step1"
+        sleep 2
+        date
+        echo "Finalizado"
+    - name: step1-2
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step2"
+        date
+        sleep 1
+        echo "Finalizado"        
+    - name: step1-3
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step3"
+        sleep 1
+        date
+        echo "Finalizado"        

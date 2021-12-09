@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-validate-defaults
+spec:
+  taskRef:
+     name: task-validate-defaults

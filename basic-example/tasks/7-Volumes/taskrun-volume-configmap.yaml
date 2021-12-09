@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-volume-configmap
+spec:
+  params:
+    - name: CFGNAME
+      value: "sonar-config"
+  taskRef:
+     name: task-volume-configmap

@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: source
+  namespace: default
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/clodonil/tekton-sharedlibrary
+    - name: revision
+      value: main

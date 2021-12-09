@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: bundle-task
+spec:
+  params:
+    - name: runtime
+      value: 'java'
+  taskRef:
+    name: parameters-task
+    bundle: index.docker.io/clodonil/task1@sha256:ffb3ecf0042abe4e72dbaf5b0ae835ba34c97a1f53f65a5b4981fc40cbdebe50
+

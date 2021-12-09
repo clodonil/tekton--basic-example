@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-retries
+spec:
+  params:
+    - name: runtime
+      type: string
+      description: Runtime para build
+    - name: pipelineTask-retries
+      type: string  
+  steps:
+    - name: step1
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task1-Step1"
+        echo "Runtime Definido:" $(params.runtime)
+        echo "Finalizado"
+        echo $(params.pipelineTask-retries)
+        echo $(context.task.retry-count)
+        if [ "$(context.task.retry-count)" == "$(params.pipelineTask-retries)" ]
+        then
+           echo "This is the last retry."
+        else
+           exit 1
+        fi

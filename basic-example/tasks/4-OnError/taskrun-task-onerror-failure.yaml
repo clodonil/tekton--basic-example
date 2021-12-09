@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-task-onerror-failure
+spec:
+  taskRef:
+     name: task-onerror-failure

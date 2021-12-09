@@ -1,0 +1,44 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-timeout
+spec:
+  stepTemplate:
+    image: ubuntu
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 1001     
+    resources:
+        requests:
+          memory: 1Gi
+          cpu: 500m
+        limits:
+          memory: 2Gi
+          cpu: 800m
+  steps:
+    - name: step1
+      timeout: 5s
+      image: centos  
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step1"
+        date
+        cat /etc/os-release
+        echo "Finalizado"
+    - name: step2
+      timeout: 5s
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step2"
+        cat /etc/os-release 
+        date
+        echo "Finalizado"       
+    - name: step3
+      timeout: 10s
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task2-Step1"
+        date
+        cat /etc/os-release
+        sleep 120
+        echo "Finalizado"

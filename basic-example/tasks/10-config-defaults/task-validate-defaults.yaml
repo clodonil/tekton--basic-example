@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-validate-defaults
+spec:
+  steps:
+    - name: workspace
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        ls -l /dados
+        echo "Finalizado"
+    - name: timeout
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        sleep 600
+  workspaces:
+    - name: arquivos
+      description: The folder where we write the message to
+      mountPath: /dados        

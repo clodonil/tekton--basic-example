@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-sidecars
+spec:
+  params:
+     - name: image
+       type: string
+  steps:
+    - name: step1
+      image: loadimpact/k6
+      script: |
+        cat <<EOF >>test.js
+        import http from 'k6/http';
+        import { sleep } from 'k6';
+        export default function () {
+            http.get('http://localhost');
+            sleep(1);
+        }
+        EOF
+        k6 run test.js 
+  sidecars:
+    - image: $(params.image)
+      name: server
+      resources:
+         requests:
+           memory: 1Gi
+           cpu: 500m
+         limits:
+           memory: 2Gi
+           cpu: 800m
+  

@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: pipelinerun-parameters
+spec:
+  params:
+    - name: runtime
+      value: 'java'
+  pipelineRef:
+    name: pipeline-parameters

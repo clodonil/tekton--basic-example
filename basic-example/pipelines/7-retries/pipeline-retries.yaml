@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-retries
+spec:
+  params:
+    - name: runtime
+      type: string
+      default: python
+  tasks:
+    - name: task-retries
+      retries: 3
+      taskRef:
+        name: task-retries
+      params:
+        - name: runtime
+          value: "$(params.runtime)"
+        - name: pipelineTask-retries
+          value: "$(context.pipelineTask.retries)"           
+ 
+

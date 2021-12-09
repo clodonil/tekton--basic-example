@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-params
+spec:
+  params:
+    - name: runtime
+      type: string
+      description: Runtime para build
+    - name: buildImage
+      type: string
+      description: imagem para build
+      default: ubuntu
+  steps:
+    - name: step1
+      image: $(params.buildImage)
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task1-Step1"
+        echo $(params.runtime)
+        sleep 1
+        echo "Finalizado"

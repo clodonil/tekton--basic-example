@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-resource-git
+spec:
+  resources:
+    - name: source
+      resourceSpec:
+        type: git
+        params:
+          - name: revision
+            value: master
+          - name: url
+            value: 'https://github.com/clodonil/typescript-ex.git'
+  taskRef:
+     name: task-resource-git

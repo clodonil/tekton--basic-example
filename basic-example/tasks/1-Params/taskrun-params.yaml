@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: taskrun-params
+spec:
+  params:
+    - name: runtime
+      value: "python"
+    - name: buildImage
+      value: ubuntu
+  taskRef:
+     name: task-params

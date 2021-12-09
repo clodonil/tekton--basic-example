@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-timeout
+spec:
+  params:
+    - name: runtime
+      type: string
+      default: python
+  tasks:
+    - name: task-timeout
+      timeout: "0h3m30s"
+      taskRef:
+        name: task-timeout
+        
+ 
+

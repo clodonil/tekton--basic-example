@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: pipelinerun-parameters
+spec:
+  params:
+    - name: runtime
+      value: 'java'
+  pipelineRef:
+    name: pipeline-parameters
+    bundle: index.docker.io/clodonil/pipeline@sha256:3cb8dee0af593d687cf8ab139229668c0a95a1d85e76cb9ae72c9f3eb144567f

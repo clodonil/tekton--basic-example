@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-timeout
+spec:
+  steps:
+    - name: step1
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Task1-Step1"
+        sleep  360

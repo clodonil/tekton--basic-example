@@ -1,0 +1,31 @@
+# kubectl create configmap sonar-config --from-file=configmap/
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-volume-configmap
+spec:
+  params:
+    - name: CFGNAME
+      type: string
+      description: Name of config map
+  steps:
+    - name: step1
+      image: centos
+      script: |
+        #!/usr/bin/env bash
+        ls -l /var/my-volume/
+      volumeMounts:
+        - name: my-volume
+          mountPath: /var/my-volume
+    - name: step2
+      image: centos
+      script: |
+        #!/usr/bin/env bash
+        cat /var/my-volume/sonar-project.properties
+      volumeMounts:
+        - name: my-volume
+          mountPath: /var/my-volume
+  volumes:
+    - name: my-volume
+      configMap:
+        name: "$(params.CFGNAME)"      

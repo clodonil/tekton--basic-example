@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-steptemplate
+spec:
+  stepTemplate:
+    image: ubuntu  
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 1001     
+    resources:
+        requests:
+          memory: 128Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 300m
+  steps:
+    - name: step1
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto Step1"
+        date
+        cat /etc/os-release
+        echo "Finalizado"
+    - name: step2
+      script: |
+        #!/usr/bin/env bash
+        echo "Execunto o Step2"
+        date
+        cat /etc/os-release
+        echo "Finalizado"
